@@ -1,0 +1,9 @@
+9cad1ddce9e5a63143ba340c9520626b
+::res://::1792122627
+icon.svg::CompressedTexture2D::4031707356414033162::1792121780::1792122633::1::::<><><>0<>0<>815b70dc1630a99cbff1aad5adc2992a<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+Main.tscn::PackedScene::-1::1792121780::0::1::::<><><>0<>0<><>::res://scripts/player.gd<>res://materials/mat_ground.tres<>res://materials/mat_crate.tres<>res://materials/mat_metal.tres<>res://materials/mat_player.tres
+mat_crate.tres::StandardMaterial3D::-1::1792121780::0::1::::<><><>0<>0<><>::
+mat_ground.tres::StandardMaterial3D::-1::1792121780::0::1::::<><><>0<>0<><>::
+mat_metal.tres::StandardMaterial3D::-1::1792121780::0::1::::<><><>0<>0<><>::
+mat_player.tres::StandardMaterial3D::-1::1792121780::0::1::::<><><>0<>0<><>::
+player.gd::GDScript::3338619558818354137::1792121780::0::1::::<>CharacterBody3D<><>0<>0<><>::

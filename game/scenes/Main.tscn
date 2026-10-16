@@ -1,0 +1,110 @@
+[gd_scene load_steps=17 format=3]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1"]
+[ext_resource type="Material" path="res://materials/mat_ground.tres" id="2"]
+[ext_resource type="Material" path="res://materials/mat_crate.tres" id="3"]
+[ext_resource type="Material" path="res://materials/mat_metal.tres" id="4"]
+[ext_resource type="Material" path="res://materials/mat_player.tres" id="5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ground"]
+size = Vector3(40, 1, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
+size = Vector3(40, 1, 40)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_player"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_crate"]
+size = Vector3(1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_crate"]
+size = Vector3(1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_metal"]
+radius = 0.5
+height = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_metal"]
+radius = 0.5
+
+[sub_resource type="ProceduralSkyMaterial" id="SkyMat"]
+
+[sub_resource type="Sky" id="Sky_main"]
+sky_material = SubResource("SkyMat")
+
+[sub_resource type="Environment" id="Env_main"]
+background_mode = 2
+sky = SubResource("Sky_main")
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env_main")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-45, -30, 0)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_ground")
+surface_material_override/0 = ExtResource("2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_ground")
+
+[node name="Crate1" type="StaticBody3D" parent="."]
+position = Vector3(3, 1.0, -3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Crate1"]
+mesh = SubResource("BoxMesh_crate")
+surface_material_override/0 = ExtResource("3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Crate1"]
+shape = SubResource("BoxShape3D_crate")
+
+[node name="Crate2" type="StaticBody3D" parent="."]
+position = Vector3(4.2, 1.0, -3)
+rotation_degrees = Vector3(0, 20, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Crate2"]
+mesh = SubResource("BoxMesh_crate")
+surface_material_override/0 = ExtResource("3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Crate2"]
+shape = SubResource("BoxShape3D_crate")
+
+[node name="MetalSphere" type="StaticBody3D" parent="."]
+position = Vector3(-3, 0.5, -3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MetalSphere"]
+mesh = SubResource("SphereMesh_metal")
+surface_material_override/0 = ExtResource("4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MetalSphere"]
+shape = SubResource("SphereShape3D_metal")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+position = Vector3(0, 1, 0)
+script = ExtResource("1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_player")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_player")
+surface_material_override/0 = ExtResource("5")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Player"]
+position = Vector3(0, 1.6, 0)
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="Player/SpringArm3D"]
+current = true
